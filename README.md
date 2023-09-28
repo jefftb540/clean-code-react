@@ -1,27 +1,33 @@
-# React + TypeScript + Vite
+# React + Clean Architecture
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O objetivo desse repositorio é mostrar como criar um sistema em ReactJs utilizando os novos Hooks, Recoil, com uma arquitetura bem definida e desacoplada, utilizando TDD (programação orientada a testes) como metodologia de trabalho, Clean Architecture para fazer a distribuição de responsabilidades em camadas, sempre seguindo os princípios do SOLID, DRY, YAGNI, KISS e aplicando Design Patterns para resolver alguns problemas comuns.
+<br /><br />
 
-Currently, two official plugins are available:
+> ## Princípios
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Single Responsibility Principle (SRP)
+- Open Closed Principle (OCP)
+- Liskov Substitution Principle (LSP)
+- Interface Segregation Principle (ISP)
+- Dependency Inversion Principle (DIP)
+- Separation of Concerns (SOC)
+- Don't Repeat Yourself (DRY)
+- You Aren't Gonna Need It (YAGNI)
+- Keep It Simple, Silly (KISS)
+- Composition Over Inheritance
+- Small Commits
 
-## Expanding the ESLint configuration
+> ## Design Patterns
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Factory
+- Adapter
+- Composite
+- Decorator
+- Dependency Injection
+- Composition Root
+- Builder
+- Proxy
 
-- Configure the top-level `parserOptions` property like this:
+> ## Architecture
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![Architecture](./architecture.png "Architecture")
