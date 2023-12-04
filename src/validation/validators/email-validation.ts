@@ -1,15 +1,19 @@
+import { string } from "yup";
 import { FieldValidation } from "@/validation/protocols";
 import { InvalidFieldError } from "@/validation/errors";
 
 export class EmailValidation implements FieldValidation {
   constructor(readonly field: string) {}
 
-  validate(input: { [key: string]: string }): Error | null {
-    const emailRegex =
-      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-    return !input[this.field] || emailRegex.test(input[this.field])
-      ? null
-      : new InvalidFieldError("Email inválido. Confira e insira novamente.");
+  async validate(input: { [key: string]: string }): Promise<Error | null> {
+    if (!input[this.field]) return null;
+    try {
+      await string()
+        .email("Email inválido. Confira e insira novamente.")
+        .validate(input[this.field]);
+      return null;
+    } catch (error: any) {
+      return new InvalidFieldError(error.errors?.[0]);
+    }
   }
 }

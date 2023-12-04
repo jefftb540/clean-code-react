@@ -19,13 +19,15 @@ const DataProvider: React.FC<Props> = ({
 
   useEffect(() => resetState(), []);
 
-  const validate = (): boolean => {
+  const validate = async (): Promise<boolean> => {
     const { email, password } = state.values;
     const formData = { email, password };
 
+    console.log(await validation.validate("email", formData));
+
     const errors = {
-      email: validation.validate("email", formData),
-      password: validation.validate("password", formData),
+      email: await validation.validate("email", formData),
+      password: await validation.validate("password", formData),
     } as typeof state.errors;
 
     const isFormInvalid = !!errors.email || !!errors.password;
@@ -42,7 +44,7 @@ const DataProvider: React.FC<Props> = ({
   ): Promise<void> => {
     event.preventDefault();
     try {
-      if (!state.isLoading && validate()) {
+      if (!state.isLoading && await validate()) {
         setState((prevState) => ({ ...prevState, isLoading: true }));
         const account = await authentication.auth(state.values);
         setCurrentAccount(account);

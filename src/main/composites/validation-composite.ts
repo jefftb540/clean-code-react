@@ -8,10 +8,14 @@ export class ValidationComposite implements Validation {
     return new ValidationComposite(validators);
   }
 
-  validate(fieldName: string, input: { [key: string]: string }): string {
+  async validate(
+    fieldName: string,
+    input: { [key: string]: string }
+  ): Promise<string> {
     const validators = this.validators.filter((v) => v.field === fieldName);
+
     for (const validator of validators) {
-      const error = validator.validate(input);
+      const error = await validator.validate(input);
       if (error) {
         return error.message;
       }

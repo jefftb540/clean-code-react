@@ -1,12 +1,16 @@
+import { string } from "yup";
 import { FieldValidation } from "@/validation/protocols";
 import { InvalidFieldError } from "@/validation/errors";
 
 export class MinLengthValidation implements FieldValidation {
   constructor(readonly field: string, private readonly minLength: number) {}
 
-  validate(input: { [key: string]: string }): Error | null {
-    return input[this.field]?.length < this.minLength
-      ? new InvalidFieldError()
-      : null;
+  async validate(input: { [key: string]: string }): Promise<Error | null> {
+    try {
+      await string().min(this.minLength).validate(input[this.field]);
+      return null;
+    } catch (error) {
+      return new InvalidFieldError();
+    }
   }
 }

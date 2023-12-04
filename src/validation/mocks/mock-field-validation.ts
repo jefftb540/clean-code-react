@@ -5,7 +5,7 @@ export class FieldValidationSpy implements FieldValidation {
 
   constructor(readonly field: string) {}
 
-  validate(_input: object): Error {
-    return this.error;
+  async validate(_input: object): Promise<Error> {
+    return new Promise((resolve) => resolve(this.error));
   }
 }

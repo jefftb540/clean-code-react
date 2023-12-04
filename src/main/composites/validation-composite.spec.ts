@@ -20,22 +20,26 @@ const makeSut = (fieldName: string): SutTypes => {
 };
 
 describe("ValidationComposite", () => {
-  test("Should return error if any validation fails", () => {
+  it("Should return error if any validation fails", async () => {
     const fieldName = faker.randDatabaseColumn();
     const { sut, fieldValidationsSpy } = makeSut(fieldName);
     const errorMessage = faker.randPhrase();
     fieldValidationsSpy[0].error = new Error(errorMessage);
     fieldValidationsSpy[1].error = new Error(faker.randPhrase());
 
-    const error = sut.validate(fieldName, { [fieldName]: faker.randWord() });
+    const error = await sut.validate(fieldName, {
+      [fieldName]: faker.randWord(),
+    });
     expect(error).toBe(errorMessage);
   });
 
-  test("Should return error if any validation fails", () => {
+  it("Should return error if any validation fails", async () => {
     const fieldName = faker.randDatabaseColumn();
     const { sut } = makeSut(fieldName);
 
-    const error = sut.validate(fieldName, { [fieldName]: faker.randWord() });
+    const error = await sut.validate(fieldName, {
+      [fieldName]: faker.randWord(),
+    });
     expect(error).toBeFalsy();
   });
 });

@@ -5,29 +5,31 @@ import { InvalidFieldError } from "@/validation/errors";
 const makeSut = (field: string): EmailValidation => new EmailValidation(field);
 
 describe("EmailValidation", () => {
-  it("Should return error if email is invalid", () => {
+  it("Should return error if email is invalid", async () => {
     const field = faker.randDatabaseColumn();
     const sut = makeSut(field);
 
-    const error = sut.validate({ [field]: faker.randWord() });
+    const error = await sut.validate({ [field]: faker.randWord() });
 
-    expect(error).toEqual(new InvalidFieldError("Email inválido. Confira e insira novamente."));
+    expect(error).toEqual(
+      new InvalidFieldError("Email inválido. Confira e insira novamente.")
+    );
   });
 
-  it("Should return falsy if email is valid", () => {
+  it("Should return falsy if email is valid", async () => {
     const field = faker.randDatabaseColumn();
     const sut = makeSut(field);
 
-    const error = sut.validate({ [field]: faker.randEmail() });
+    const error = await sut.validate({ [field]: faker.randEmail() });
 
     expect(error).toBeFalsy();
   });
 
-  it("Should return falsy if email is empty", () => {
+  it("Should return falsy if email is empty", async () => {
     const field = faker.randDatabaseColumn();
     const sut = makeSut(field);
 
-    const error = sut.validate({ [field]: "" });
+    const error = await sut.validate({ [field]: "" });
 
     expect(error).toBeFalsy();
   });
