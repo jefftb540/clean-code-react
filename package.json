@@ -6,23 +6,24 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "yarn lint --fix",
     "preview": "vite preview",
-    "test": "jest --passWithNoTests --no-cache --runInBand --watchAll=false",
+    "test": "jest --passWithNoTests --runInBand --no-watchAll",
     "test:watch": "yarn test --watchAll",
     "test:staged": "yarn test --findRelatedTests",
     "test:coverage": "yarn test --coverage",
     "test:ci": "yarn jest --ci --coverage",
-    "test:coveralls": "yarn run test:ci && coveralls < coverage/lcov.info",
-    "prepare-husky": "husky install"
+    "prepare:husky": "husky install"
   },
   "dependencies": {
-    "@nimbus-ds/components": "^5.2.0",
-    "@nimbus-ds/styles": "^9.5.0",
+    "@nimbus-ds/components": "^5.3.1",
+    "@nimbus-ds/styles": "^9.8.0",
     "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.16.0",
-    "recoil": "^0.7.7"
+    "yup": "^1.3.2",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
@@ -44,11 +45,12 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-localstorage-mock": "^2.4.26",
+    "svg-jest": "^1.0.1",
     "ts-jest": "^29.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-node-polyfills": "^0.14.1",
-    "vite-plugin-svgr": "^4.0.0",
-    "yup": "^1.3.2"
-  }
+    "vite-plugin-svgr": "^4.0.0"
+  },
+  "packageManager": "yarn@4.0.2"
 }

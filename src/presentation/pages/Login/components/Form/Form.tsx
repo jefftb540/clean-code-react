@@ -1,11 +1,14 @@
 import { Input } from "@/presentation/components";
 import { Box, Button } from "@nimbus-ds/components";
 
-import { useLogin } from "@/presentation/pages/Login/hooks";
+import { useLoginStore } from "@/presentation/pages/Login/login.store";
 import { Props } from "./form.types";
 
 const Form: React.FC<Props> = ({ onSubmit }) => {
-  const { state, onChange } = useLogin();
+  const { values, errors, isLoading, setValues } = useLoginStore();
+  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ [evt.target.name]: evt.target.value });
+  };
 
   return (
     <Box
@@ -20,22 +23,22 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
         type="text"
         name="email"
         label="E-mail"
-        appearance={!!state.errors.email ? "danger" : "neutral"}
-        helpText={state.errors.email}
-        value={state.values.email}
+        appearance={errors.email ? "danger" : "neutral"}
+        helpText={errors.email}
+        value={values.email}
         onChange={onChange}
       />
       <Input
         type="password"
         name="password"
         label="Senha"
-        appearance={!!state.errors.password ? "danger" : "neutral"}
-        helpText={state.errors.password}
-        value={state.values.password}
+        appearance={errors.password ? "danger" : "neutral"}
+        helpText={errors.password}
+        value={values.password}
         onChange={onChange}
       />
       <Box display="flex" justifyContent="flex-end">
-        <Button appearance="primary" type="submit" disabled={state.isLoading}>
+        <Button appearance="primary" type="submit" disabled={isLoading}>
           Acessar
         </Button>
       </Box>

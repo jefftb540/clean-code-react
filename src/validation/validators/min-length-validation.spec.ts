@@ -7,7 +7,7 @@ const makeSut = (field: string): MinLengthValidation =>
   new MinLengthValidation(field, 5);
 
 describe("MinLengthValidation", () => {
-  it("Should return error if value is invalid", async () => {
+  it("should return error if value is invalid", async () => {
     const field = faker.randDatabaseColumn();
     const sut = makeSut(field);
     const error = await sut.validate({
@@ -17,7 +17,7 @@ describe("MinLengthValidation", () => {
     expect(error).toEqual(new InvalidFieldError());
   });
 
-  it("Should return falsy if value is valid", async () => {
+  it("should return falsy if value is valid", async () => {
     const field = faker.randDatabaseColumn();
     const sut = makeSut(field);
 
@@ -28,7 +28,7 @@ describe("MinLengthValidation", () => {
     expect(error).toBeFalsy();
   });
 
-  it("Should return falsy if field does not exists in schema", async () => {
+  it("should return falsy if field does not exists in schema", async () => {
     const sut = makeSut("any_field");
 
     const error = await sut.validate({

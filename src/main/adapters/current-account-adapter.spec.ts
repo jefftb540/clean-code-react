@@ -8,7 +8,7 @@ import { mockAccountModel } from "@/domain/mocks";
 jest.mock("@/infra/cache/local-storage-adapter");
 
 describe("CurrentAccountAdapter", () => {
-  test("Should call LocalStorageAdapter.set with correct values", () => {
+  it("should call LocalStorageAdapter.set with correct values", () => {
     const account = mockAccountModel();
     const setSpy = jest.spyOn(LocalStorageAdapter.prototype, "set");
 
@@ -17,7 +17,7 @@ describe("CurrentAccountAdapter", () => {
     expect(setSpy).toHaveBeenCalledWith("auth", account);
   });
 
-  test("Should call LocalStorageAdapter.get with correct value", () => {
+  it("should call LocalStorageAdapter.get with correct value", () => {
     const account = mockAccountModel();
     const getSpy = jest
       .spyOn(LocalStorageAdapter.prototype, "get")

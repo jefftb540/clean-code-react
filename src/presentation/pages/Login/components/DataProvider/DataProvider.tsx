@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import { useToast } from "@nimbus-ds/components";
 
-import { useLogin } from "@/presentation/pages/Login/hooks";
+import { useLoginStore } from "@/presentation/pages/Login/login.store";
 import { Props } from "./dataProvider.types";
-import { currentAccountState } from "@/presentation/store";
+import { useCurrentAccountStore } from "@/presentation/store";
 
 const DataProvider: React.FC<Props> = ({
   authentication,
@@ -13,49 +12,43 @@ const DataProvider: React.FC<Props> = ({
   children,
 }) => {
   const navigate = useNavigate();
+  const loginStore = useLoginStore();
   const { addToast } = useToast();
-  const { resetState, setState, setCurrentAccount, state } = useLogin();
-  const [_, setAuth] = useRecoilState(currentAccountState);
+  const { setCurrentAccount } = useCurrentAccountStore();
 
-  useEffect(() => resetState(), []);
+  useEffect(() => loginStore.resetState(), []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const validate = async (): Promise<boolean> => {
-    const { email, password } = state.values;
-    const formData = { email, password };
-
-    console.log(await validation.validate("email", formData));
-
     const errors = {
-      email: await validation.validate("email", formData),
-      password: await validation.validate("password", formData),
-    } as typeof state.errors;
+      email: await validation.validate("email", loginStore.values),
+      password: await validation.validate("password", loginStore.values),
+    };
 
     const isFormInvalid = !!errors.email || !!errors.password;
-    setState((prevState) => ({
-      ...prevState,
-      errors: { ...prevState.errors, ...errors },
-    }));
-
+    loginStore.setErrors(errors);
     return !isFormInvalid;
   };
 
   const onSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
+    event: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault();
     try {
-      if (!state.isLoading && await validate()) {
-        setState((prevState) => ({ ...prevState, isLoading: true }));
-        const account = await authentication.auth(state.values);
+      if (!loginStore.isLoading && (await validate())) {
+        loginStore.setIsLoading(true);
+        const account = await authentication.auth({
+          email: loginStore.values.email,
+          password: loginStore.values.password,
+        });
         setCurrentAccount(account);
-        setAuth((prevState) => ({ ...prevState, auth: account }));
         navigate("/");
       }
-    } catch (error: any) {
-      setState((prevState) => ({ ...prevState, isLoading: false }));
+    } catch (error: unknown) {
+      const err = error as { message: { description: string } };
+      loginStore.setIsLoading(false);
       addToast({
         type: "danger",
-        text: error.message?.description ?? error.message,
+        text: err.message?.description ?? err.message,
         duration: 4000,
         id: "login-error",
       });

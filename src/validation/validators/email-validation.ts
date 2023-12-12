@@ -12,8 +12,8 @@ export class EmailValidation implements FieldValidation {
         .email("Email inválido. Confira e insira novamente.")
         .validate(input[this.field]);
       return null;
-    } catch (error: any) {
-      return new InvalidFieldError(error.errors?.[0]);
+    } catch (error: unknown) {
+      return new InvalidFieldError((error as { errors: string[] }).errors?.[0]);
     }
   }
 }

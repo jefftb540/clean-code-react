@@ -7,7 +7,7 @@ import {
 import { ValidationBuilder as sut } from "@/main/builders";
 
 describe("ValidationBuilder", () => {
-  test("Should return RequiredFieldValidation", () => {
+  it("should return RequiredFieldValidation", () => {
     const field = faker.randDatabaseColumn();
 
     const validations = sut.field(field).required().build();
@@ -15,7 +15,7 @@ describe("ValidationBuilder", () => {
     expect(validations).toEqual([new RequiredFieldValidation(field)]);
   });
 
-  test("Should return EmailValidation", () => {
+  it("should return EmailValidation", () => {
     const field = faker.randDatabaseColumn();
 
     const validations = sut.field(field).email().build();
@@ -23,7 +23,7 @@ describe("ValidationBuilder", () => {
     expect(validations).toEqual([new EmailValidation(field)]);
   });
 
-  test("Should return MinLengthValidation", () => {
+  it("should return MinLengthValidation", () => {
     const field = faker.randDatabaseColumn();
     const length = faker.randNumber({ max: 4 });
 
@@ -32,7 +32,7 @@ describe("ValidationBuilder", () => {
     expect(validations).toEqual([new MinLengthValidation(field, length)]);
   });
 
-  test("Should return a list of validations", () => {
+  it("should return a list of validations", () => {
     const field = faker.randDatabaseColumn();
     const length = faker.randNumber({ max: 4 });
 

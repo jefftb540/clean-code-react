@@ -1,9 +1,9 @@
 # React + Clean Architecture
 
-O objetivo desse repositorio é mostrar como criar um sistema em ReactJs utilizando os novos Hooks, Recoil, com uma arquitetura bem definida e desacoplada, utilizando TDD (programação orientada a testes) como metodologia de trabalho, Clean Architecture para fazer a distribuição de responsabilidades em camadas, sempre seguindo os princípios do SOLID, DRY, YAGNI, KISS e aplicando Design Patterns para resolver alguns problemas comuns.
+O objetivo desse repositorio é mostrar como criar um sistema em ReactJs utilizando Hooks, Zustand, com uma arquitetura bem definida e desacoplada, utilizando TDD (programação orientada a testes) como metodologia de trabalho, Clean Architecture para fazer a distribuição de responsabilidades em camadas, sempre seguindo os princípios do SOLID, DRY, YAGNI, KISS e aplicando Design Patterns para resolver alguns problemas comuns.
 <br /><br />
 
-> ## Princípios
+## Princípios
 
 - Single Responsibility Principle (SRP)
 - Open Closed Principle (OCP)
@@ -17,7 +17,7 @@ O objetivo desse repositorio é mostrar como criar um sistema em ReactJs utiliza
 - Composition Over Inheritance
 - Small Commits
 
-> ## Design Patterns
+## Design Patterns
 
 - Factory
 - Adapter
@@ -28,6 +28,8 @@ O objetivo desse repositorio é mostrar como criar um sistema em ReactJs utiliza
 - Builder
 - Proxy
 
-> ## Architecture
+## Architecture
 
-![Architecture](./architecture.png "Architecture")
+No link é possível encontrar uma [documentação](./ARCHITECTURE.md) detalhada do diagrama e das camadas definidas abaixo.
+
+![Architecture](.docs/architecture.png "Architecture")

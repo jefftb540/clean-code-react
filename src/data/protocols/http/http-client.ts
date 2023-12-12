@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 export type HttpRequest = {
   url: string;
   method: HttpMethod;
@@ -22,7 +23,7 @@ export enum HttpStatusCode {
   serverError = 500,
 }
 
-export type HttpResponse<T = any> = {
+export type HttpResponse<T = unknown> = {
   statusCode: HttpStatusCode;
   body?: T;
   message?: string;

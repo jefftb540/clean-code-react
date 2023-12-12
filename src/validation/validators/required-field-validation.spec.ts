@@ -7,7 +7,7 @@ const makeSut = (field: string): RequiredFieldValidation =>
   new RequiredFieldValidation(field);
 
 describe("RequiredFieldValidation", () => {
-  it("Should return error if field is empty", async () => {
+  it("should return error if field is empty", async () => {
     const field = faker.randDatabaseColumn();
     const sut = makeSut(field);
 
@@ -16,7 +16,7 @@ describe("RequiredFieldValidation", () => {
     expect(error).toEqual(new RequiredFieldError());
   });
 
-  it("Should return falsy if field is not empty", async () => {
+  it("should return falsy if field is not empty", async () => {
     const field = faker.randDatabaseColumn();
     const sut = makeSut(field);
 

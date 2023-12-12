@@ -1,5 +1,4 @@
 import React from "react";
-import { Logo } from "@/presentation/components";
 import { Box, Title } from "@nimbus-ds/components";
 
 import { DataProvider, Form } from "./components";
@@ -21,7 +20,6 @@ const Login: React.FC<Props> = (props) => (
           display="flex"
           flexDirection="column"
         >
-          <Logo />
           <Box marginY="8">
             <Title>Acesse sua conta</Title>
           </Box>
@@ -31,12 +29,10 @@ const Login: React.FC<Props> = (props) => (
         </Box>
         <Box
           flex="1"
-          backgroundImage="url(https://d2r9epyceweg5n.cloudfront.net/assets/partners/img/sign-in-bg.png)"
           backgroundPosition="bottom left"
           backgroundRepeat="no-repeat"
           backgroundSize="auto"
-          // @ts-ignore
-          backgroundColor="#f7f7f7"
+          backgroundColor="neutral-surfaceDisabled"
         />
       </Box>
     )}

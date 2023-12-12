@@ -10,7 +10,7 @@ describe("LocalStorageAdapter", () => {
     localStorage.clear();
   });
 
-  it("Should call localStorage.setItem with correct values", async () => {
+  it("should call localStorage.setItem with correct values", async () => {
     const sut = makeSut();
     const key = faker.randDatabaseColumn();
     const value = faker.randJSON();
@@ -19,11 +19,11 @@ describe("LocalStorageAdapter", () => {
 
     expect(localStorage.setItem).toHaveBeenCalledWith(
       key,
-      JSON.stringify(value)
+      JSON.stringify(value),
     );
   });
 
-  it("Should call localStorage.removeItem if value is null", async () => {
+  it("should call localStorage.removeItem if value is null", async () => {
     const sut = makeSut();
     const key = faker.randDatabaseColumn();
 
@@ -31,7 +31,7 @@ describe("LocalStorageAdapter", () => {
     expect(localStorage.removeItem).toHaveBeenCalledWith(key);
   });
 
-  it("Should call localStorage.getItem with correct value", async () => {
+  it("should call localStorage.getItem with correct value", async () => {
     const sut = makeSut();
     const key = faker.randDatabaseColumn();
     const value = faker.randJSON();

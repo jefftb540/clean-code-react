@@ -12,7 +12,11 @@ const Input: React.FC<Props> = ({ label, type, helpText, ...props }) => (
       <NimbusInput.Password id={props.id ?? props.name} {...props} />
     )}
     {helpText && (
-      <Text color="danger-textLow" fontSize="caption">
+      <Text
+        data-testid={`${props.name}-text-error`}
+        color="danger-textLow"
+        fontSize="caption"
+      >
         {helpText}
       </Text>
     )}

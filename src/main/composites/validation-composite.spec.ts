@@ -20,7 +20,7 @@ const makeSut = (fieldName: string): SutTypes => {
 };
 
 describe("ValidationComposite", () => {
-  it("Should return error if any validation fails", async () => {
+  it("should return error if any validation fails", async () => {
     const fieldName = faker.randDatabaseColumn();
     const { sut, fieldValidationsSpy } = makeSut(fieldName);
     const errorMessage = faker.randPhrase();
@@ -33,7 +33,7 @@ describe("ValidationComposite", () => {
     expect(error).toBe(errorMessage);
   });
 
-  it("Should return error if any validation fails", async () => {
+  it("should return error if any validation fails", async () => {
     const fieldName = faker.randDatabaseColumn();
     const { sut } = makeSut(fieldName);
 
