@@ -130,19 +130,4 @@ describe("Login Page", () => {
     await simulateValidSubmit();
     expect(screen.getByText(error.message)).toBeDefined();
   });
-
-  it("should call UpdateCurrentAccount on success", async () => {
-    // const { authenticationSpy } = makeSut();
-    makeSut();
-    console.log(window.location.pathname);
-
-    await simulateValidSubmit();
-    console.log(history);
-
-    // expect(setCurrentAccountMock).toHaveBeenCalledWith(
-    //   authenticationSpy.account
-    // );
-    // expect(history.length).toBe(1);
-    // expect(history.location.pathname).toBe("/");
-  });
 });
