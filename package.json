@@ -26,6 +26,8 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
     "@jest/globals": "^29.7.0",
     "@jest/types": "^29.6.3",
     "@ngneat/falso": "^7.1.1",
